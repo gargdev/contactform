@@ -164,7 +164,7 @@ const ContactForm = () => {
           <span class="circle one"></span>
           <span class="circle two"></span>
           <form onSubmit={handleSubmit} autoComplete="off">
-            <h3 className="title">Contact US</h3>
+            <h3 className="title">Contact Us</h3>
             <div className="input-container">
               <input
                 type="text"
