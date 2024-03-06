@@ -3,7 +3,7 @@ import ContactForm from "../src/components/ContactForm"
 
 function App() {
   return (
-    <div className="App">
+    <div className="">
       {<ContactForm/>}
     </div>
   );

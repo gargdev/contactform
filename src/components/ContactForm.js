@@ -1,5 +1,16 @@
 import React, { useState } from "react";
 import "../Styles/ContactForm.css";
+import shape from "../assets/shape.png";
+import email from "../assets/email.png";
+import phone from "../assets/phone.png";
+import location from "../assets/location.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebookF,
+  faTwitter,
+  faInstagram,
+  faLinkedinIn,
+} from "@fortawesome/free-brands-svg-icons";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -96,61 +107,137 @@ const ContactForm = () => {
     }
   };
 
+  const handleFocus = (e) => {
+    e.target.parentNode.classList.add("focus");
+  };
+
+  const handleBlur = (e) => {
+    if (e.target.value === "") {
+      e.target.parentNode.classList.remove("focus");
+    }
+  };
+
   return (
-    <div className="contact-form-container">
-      <h1>Contact Us</h1>
-      <form onSubmit={handleSubmit} className="contact-form">
-        <div className="input-group">
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-          {errors.name && <span className="error-message">{errors.name}</span>}
+    <div className="container">
+      <span class="big-circle"></span>
+      <img src={shape} class="square" alt="" />
+      <div className="form">
+        <div className="contact-info">
+          <h3 className="title">Let's get in touch</h3>
+          <p className="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
+            dolorum adipisci recusandae praesentium dicta!
+          </p>
+          <div className="info">
+            <div className="information">
+              <img src={location} className="icon" alt="" />
+              <p>92 Cherry Drive Uniondale, NY 11553</p>
+            </div>
+            <div className="information">
+              <img src={email} className="icon" alt="" />
+              <p>lorem@ipsum.com</p>
+            </div>
+            <div className="information">
+              <img src={phone} className="icon" alt="" />
+              <p>123-456-789</p>
+            </div>
+          </div>
+          <div className="social-media">
+            <p>Connect with us :</p>
+            <div className="social-icons">
+              <a href="/">
+                <FontAwesomeIcon icon={faFacebookF} />
+              </a>
+              <a href="/">
+                <FontAwesomeIcon icon={faTwitter} />
+              </a>
+              <a href="/">
+                <FontAwesomeIcon icon={faInstagram} />
+              </a>
+              <a href="/">
+                <FontAwesomeIcon icon={faLinkedinIn} />
+              </a>
+            </div>
+          </div>
         </div>
-        <div className="input-group">
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          {errors.email && (
-            <span className="error-message">{errors.email}</span>
-          )}
+        <div className="contact-form">
+          <span class="circle one"></span>
+          <span class="circle two"></span>
+          <form onSubmit={handleSubmit} autoComplete="off">
+            <h3 className="title">Contact US</h3>
+            <div className="input-container">
+              <input
+                type="text"
+                name="name"
+                className="input"
+                value={formData.name}
+                onChange={handleChange}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                required
+              />
+              {errors.name && (
+                <wrap className="error-message">{errors.name}</wrap>
+              )}
+              <label for="">Username</label>
+              <span>Username</span>
+            </div>
+            <div className="input-container">
+              <input
+                type="email"
+                name="email"
+                className="input"
+                value={formData.email}
+                onChange={handleChange}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                required
+              />
+              {errors.email && (
+                <wrap className="error-message">{errors.email}</wrap>
+              )}
+              <label for="">Email</label>
+              <span>Email</span>
+            </div>
+            <div className="input-container">
+              <input
+                type="tel"
+                name="phone"
+                className="input"
+                value={formData.phone}
+                onChange={handleChange}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                required
+              />
+              {errors.phone && (
+                <wrap className="error-message">{errors.phone}</wrap>
+              )}
+              <label for="">Phone</label>
+              <span>Phone</span>
+            </div>
+            <div className="input-container textarea">
+              <textarea
+                name="message"
+                className="input"
+                value={formData.message}
+                onChange={handleChange}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                required
+              ></textarea>
+              {errors.message && (
+                <wrap className="error-message">{errors.message}</wrap>
+              )}
+              <label for="">Message</label>
+              <span>Message</span>
+            </div>
+            <button type="submit" className="btn">
+              Submit
+            </button>
+          </form>
         </div>
-        <div className="input-group">
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
-          {errors.phone && (
-            <span className="error-message">{errors.phone}</span>
-          )}
-        </div>
-        <div className="input-group">
-          <textarea
-            name="message"
-            placeholder="Message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          ></textarea>
-          {errors.message && (
-            <span className="error-message">{errors.message}</span>
-          )}
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+      </div>
     </div>
   );
 };
